@@ -42,7 +42,7 @@ resource "google_storage_bucket" "default" {
     enabled = "${var.versioning}"
   }
 
-  website = "${var.website_config}"
+  website = ["${var.website_config}"]
 }
 
 resource "google_storage_bucket" "logging" {
