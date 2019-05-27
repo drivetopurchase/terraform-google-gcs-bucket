@@ -15,7 +15,7 @@
 data "google_client_config" "current" {}
 
 locals {
-  bucket_name = "${var.name}-${local.project_id}"
+  bucket_name = "${var.name}"
   location    = "${var.region != "" ? var.region : data.google_client_config.current.region}"
   project_id  = "${var.project_id != "" ? var.project_id : data.google_client_config.current.project}"
 }
@@ -47,7 +47,7 @@ resource "google_storage_bucket" "logging" {
   name          = "${local.bucket_name}-logs"
   location      = "${local.location}"
   project       = "${local.project_id}"
-  storage_class = "REGIONAL"
+  storage_class = "${var.storage_class}"
 
   lifecycle {
     // TODO Should be set to "${var.prevent_destroy}" once https://github.com/hashicorp/terraform/issues/3116 is fixed.
