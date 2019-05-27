@@ -52,6 +52,6 @@ variable "versioning" {
 }
 
 variable "website_config" {
-  default = []
-  type    = "list"
+  default = {}
+  type    = "map"
 }
