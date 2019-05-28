@@ -46,7 +46,7 @@ resource "google_storage_bucket" "default" {
 }
 
 resource "google_storage_bucket" "logging" {
-  name          = "${local.bucket_name}-logs"
+  name          = "${replace(local.bucket_name, ".", "-")}-logs"
   location      = "${local.location}"
   project       = "${local.project_id}"
   storage_class = "${var.storage_class}"
