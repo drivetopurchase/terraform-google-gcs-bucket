@@ -37,7 +37,7 @@ resource "google_storage_bucket_acl" "default_bucket" {
   # If the expression in the following list itself returns a list, remove the
   # brackets to avoid interpretation as a list of lists. If the expression
   # returns a single list item then leave it as-is and remove this TODO comment.
-  role_entity = [concat(local.default_role_entities, var.role_entities)]
+  role_entity = concat(local.default_role_entities, var.role_entities)
 }
 
 resource "google_storage_bucket_acl" "logging_bucket" {
@@ -50,6 +50,6 @@ resource "google_storage_bucket_acl" "logging_bucket" {
   # If the expression in the following list itself returns a list, remove the
   # brackets to avoid interpretation as a list of lists. If the expression
   # returns a single list item then leave it as-is and remove this TODO comment.
-  role_entity = [concat(local.default_role_entities, local.logging_role_entities)]
+  role_entity = concat(local.default_role_entities, local.logging_role_entities)
 }
 
