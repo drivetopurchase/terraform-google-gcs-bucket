@@ -36,11 +36,6 @@ resource "google_storage_bucket" "default" {
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {
-      # TF-UPGRADE-TODO: The automatic upgrade tool can't predict
-      # which keys might be set in maps assigned here, so it has
-      # produced a comprehensive set here. Consider simplifying
-      # this after confirming which keys can be set in practice.
-
       dynamic "action" {
         for_each = lookup(lifecycle_rule.value, "action", [])
         content {
@@ -74,11 +69,6 @@ resource "google_storage_bucket" "default" {
   dynamic "website" {
     for_each = [var.website_config]
     content {
-      # TF-UPGRADE-TODO: The automatic upgrade tool can't predict
-      # which keys might be set in maps assigned here, so it has
-      # produced a comprehensive set here. Consider simplifying
-      # this after confirming which keys can be set in practice.
-
       main_page_suffix = lookup(website.value, "main_page_suffix", null)
       not_found_page   = lookup(website.value, "not_found_page", null)
     }
